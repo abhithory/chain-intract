@@ -1,8 +1,8 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 export type SelectItem = {
-    name: string;
-    logo?: ReactNode;
-}
+  name: string;
+  logo?: ReactNode;
+};
 
 export type SelectItemList = SelectItem[];

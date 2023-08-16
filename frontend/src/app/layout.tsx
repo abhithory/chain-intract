@@ -1,10 +1,12 @@
+import ThirdWebProvider from '@/components/Providers/ThirdWebProvider';
+import Web3ConnectionWrapper from '@/context/Web3ConnectionContext';
 import '@/styles/globals.css';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'ChainIntract',
   description:
-    'ChainIntract is a revolutionary platform designed to make blockchain technology accessible and user-friendly for everyone. Our mission is to simplify the process of engaging with smart contracts on various blockchain networks, empowering users to harness the full potential of decentralized applications.',
+    'ChainIntract is a platform designed to make blockchain technology accessible and user-friendly for everyone. Our mission is to simplify the process of engaging with smart contracts on various blockchain networks, empowering users to harness the full potential of decentralized applications.',
 };
 
 export default function RootLayout({
@@ -14,7 +16,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <ThirdWebProvider>
+        <Web3ConnectionWrapper>
+          <body>{children}</body>
+        </Web3ConnectionWrapper>
+      </ThirdWebProvider>
     </html>
   );
 }

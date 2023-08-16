@@ -12,10 +12,13 @@
   "dependencies": {
     "@headlessui/react": "^1.7.16",
     "@heroicons/react": "^2.0.18",
+    "@thirdweb-dev/react": "^3.14.31",
+    "@thirdweb-dev/sdk": "^3.10.50",
     "@types/node": "20.5.0",
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.15",
+    "ethers": "^5.7.2",
     "next": "13.4.16",
     "postcss": "8.4.27",
     "react": "18.2.0",

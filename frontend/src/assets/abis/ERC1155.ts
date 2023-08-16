@@ -1,4 +1,4 @@
-import { ContractAbi } from "@/utils/types/AbiType";
+import { ContractAbi } from '@/utils/types/AbiType';
 
 export const ERC1155: ContractAbi = [
   {

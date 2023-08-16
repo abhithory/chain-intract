@@ -18,11 +18,9 @@ export type AbiParameterType =
   | 'int256'
   | 'bytes[]'
   | 'bytes'
-  | 'bytes4' 
+  | 'bytes4'
   | 'string'
-  | 'string[]'
-  ;
-
+  | 'string[]';
 
 export type AbiEventInput = {
   indexed: boolean;
@@ -51,7 +49,7 @@ export type AbiFunctionOutput = {
 };
 
 export type AbiFunction = {
-  constant?:boolean;
+  constant?: boolean;
   payable?: boolean;
   inputs: AbiFunctionInput[];
   outputs?: AbiFunctionOutput[];
