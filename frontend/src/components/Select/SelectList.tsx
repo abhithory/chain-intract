@@ -2,18 +2,18 @@
 import { Fragment, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
+import { SelectItem, SelectItemList } from '@/utils/types/Select';
 
 type SelectListProps = {
-    items: {
-        name: string
-    }[];
+    items: SelectItemList;
+    selected: SelectItem;
+    setSelected: (item: SelectItem) => void;
     title?: string;
 }
 
-export default function SelectList({items,title}:SelectListProps) {
+export default function SelectList({items,title, setSelected, selected}:SelectListProps) {
 
     if (items.length === 0) return
-  const [selected, setSelected] = useState(items[0])
 
   return (
     <>

@@ -26,7 +26,7 @@ export type AbiParameterType =
 
 export type AbiEventInput = {
   indexed: boolean;
-  internalType: AbiParameterType;
+  internalType?: AbiParameterType;
   name: string;
   type: AbiParameterType;
 };
@@ -39,18 +39,20 @@ export type AbiEvent = {
 };
 
 export type AbiFunctionInput = {
-  internalType: AbiParameterType;
+  internalType?: AbiParameterType;
   name: string;
   type: AbiParameterType;
 };
 
 export type AbiFunctionOutput = {
-  internalType: AbiParameterType;
+  internalType?: AbiParameterType;
   name: string;
   type: AbiParameterType;
 };
 
 export type AbiFunction = {
+  constant?:boolean;
+  payable?: boolean;
   inputs: AbiFunctionInput[];
   outputs?: AbiFunctionOutput[];
   name: string;
