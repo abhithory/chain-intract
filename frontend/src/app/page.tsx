@@ -29,12 +29,10 @@ const abis = [
 ];
 
 export default function Home() {
-
   const { address, callFunctionRead, callFunctionWrite } = useWeb3Connection();
   const chain = useChain();
 
-
-  const [contractAddress, setContractAddress] = useState("");
+  const [contractAddress, setContractAddress] = useState('');
 
   const [selectedAbiOption, setSelectedAbiOption] = useState<SelectItem>(
     abis[0],
@@ -64,18 +62,18 @@ export default function Home() {
     });
     try {
       let result;
-      if (item.stateMutability === "view") {
+      if (item.stateMutability === 'view') {
         result = await callFunctionRead(contractAddress, abiOfContract, {
           name: item.name,
-          inputValues
+          inputValues,
         });
-        console.log("result", Number(result));
+        console.log('result', Number(result));
       } else {
         result = await callFunctionWrite(contractAddress, abiOfContract, {
           name: item.name,
-          inputValues
+          inputValues,
         });
-        console.log("result", result);
+        console.log('result', result);
       }
       setLoadingTx(false);
     } catch (error) {

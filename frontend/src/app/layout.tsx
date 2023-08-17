@@ -18,14 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <ThirdWebProvider>
-
         <Web3ConnectionWrapper>
           <body>
-        <Navbar />
-        <main>
-            {children}
-        </main>
-            </body>
+            <Navbar />
+            <main>{children}</main>
+          </body>
         </Web3ConnectionWrapper>
       </ThirdWebProvider>
     </html>
