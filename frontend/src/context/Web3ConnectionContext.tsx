@@ -61,10 +61,10 @@ const Web3ConnectionWrapper = ({ children }: any) => {
     ): Promise<boolean> {
         try {
             const _contract = getContract(address, abi);
-            const _tx = await _contract.addData(...functionData.inputValues, {
+            const _tx = await _contract[functionData.name](...functionData.inputValues, {
                 value: functionData.vaule || '0',
             });
-            _tx.wait();
+            await _tx.wait();
             return true;
         } catch (error) {
             console.log('callFunctionWrite error', error);

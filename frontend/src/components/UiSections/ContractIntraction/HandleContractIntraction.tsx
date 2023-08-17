@@ -1,6 +1,5 @@
 'use client';
 import Image from 'next/image';
-import { ERC1155 } from './../assets/abis/ERC1155';
 import DisclosureContainer from '@/components/Disclosure';
 import SelectList from '@/components/Select/SelectList';
 import Web3Input from '@/components/inputs/Web3Input';
@@ -12,14 +11,10 @@ import { ERC721 } from '@/assets/abis/ERC721';
 import { ERC20 } from '@/assets/abis/ERC20';
 import { useWeb3Connection } from '@/context/Web3ConnectionContext';
 import { ConnectWallet, useChain } from '@thirdweb-dev/react';
-import HandleContractIntraction from '@/components/UiSections/ContractIntraction/HandleContractIntraction';
+import { ERC1155 } from '@/assets/abis/ERC1155';
+import FunctionCallForm from './FunctionCallForm';
 
-const chains = [
-  { name: 'Select Blockchain' },
-  { name: 'Ethereum' },
-  { name: 'Goerli' },
-  { name: 'Polygon' },
-];
+
 
 const abis = [
   { name: 'Select ABIs' },
@@ -28,7 +23,7 @@ const abis = [
   { name: 'ERC20' },
 ];
 
-export default function Home() {
+export default function HandleContractIntraction() {
 
   const { address, callFunctionRead, callFunctionWrite } = useWeb3Connection();
   const chain = useChain();
@@ -40,7 +35,6 @@ export default function Home() {
     abis[0],
   );
 
-  const [loadingTx, setLoadingTx] = useState(false);
 
   const getABI = (value: string): ContractAbi | null => {
     if (value === 'ERC1155') {
@@ -55,10 +49,9 @@ export default function Home() {
   };
   const abiOfContract = getABI(selectedAbiOption.name);
 
-  const handleForm = async (event: React.FormEvent, item: AbiFunction) => {
+  const handleFunctionForm = async (event: React.FormEvent, item: AbiFunction) => {
     event.preventDefault();
     if (item.type !== 'function' || !address || !abiOfContract) return;
-    setLoadingTx(true);
     const inputValues = item.inputs.map((input) => {
       return (event.currentTarget as any)[input.name].value;
     });
@@ -69,23 +62,46 @@ export default function Home() {
           name: item.name,
           inputValues
         });
-        console.log("result", Number(result));
       } else {
         result = await callFunctionWrite(contractAddress, abiOfContract, {
           name: item.name,
           inputValues
         });
-        console.log("result", result);
       }
-      setLoadingTx(false);
+      return result;
     } catch (error) {
-      setLoadingTx(false);
-      console.error('handleForm:', error);
+      throw error
     }
-  };
+  }
+
+
   return (
-    <main className="flex items-center justify-center flex-col ">
-      <HandleContractIntraction />
-    </main>
+      <div className="w-8/12 my-12 flex flex-col gap-4">
+
+        <ConnectWallet />
+
+        {address &&
+          <h2>Connected With {chain?.name}. Change your network to intract with other blockchains</h2>
+        }
+
+        <Web3Input
+          label={'Enter Contract Address'}
+          parameterType={'address'}
+          onChange={(value) => setContractAddress(value)}
+        />
+
+        <SelectList
+          items={abis}
+          selected={selectedAbiOption}
+          setSelected={setSelectedAbiOption}
+        />
+        {abiOfContract?.map((item, key) => {
+          return (
+            item.type === 'function' && (
+              <FunctionCallForm item={item} key={key} handleForm={handleFunctionForm} />
+            )
+          );
+        })}
+      </div>
   );
 }

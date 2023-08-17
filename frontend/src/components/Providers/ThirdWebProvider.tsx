@@ -21,13 +21,13 @@ const Ganache = {
 function ThirdWebProvider({ children }: any) {
   return (
     <ThirdwebProvider
-      activeChain="mumbai"
-      supportedChains={[Mumbai]}
+      // activeChain="mumbai"
+      // supportedChains={[]}
       // supportedChains={[ Polygon, Mumbai, Ganache]}
       dAppMeta={{
-        name: 'Data Vault',
-        description: 'data vault',
-        logoUrl: '/assests/logo.png',
+        name: 'Chain intract',
+        description: 'chain intract',
+        logoUrl: '/images/logo/white_logo.png',
         url: '',
         isDarkMode: true,
       }}

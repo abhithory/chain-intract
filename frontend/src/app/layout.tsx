@@ -1,4 +1,5 @@
 import ThirdWebProvider from '@/components/Providers/ThirdWebProvider';
+import Navbar from '@/components/UiSections/Navbar';
 import Web3ConnectionWrapper from '@/context/Web3ConnectionContext';
 import '@/styles/globals.css';
 import type { Metadata } from 'next';
@@ -17,8 +18,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <ThirdWebProvider>
+
         <Web3ConnectionWrapper>
-          <body>{children}</body>
+          <body>
+        <Navbar />
+        <main>
+            {children}
+        </main>
+            </body>
         </Web3ConnectionWrapper>
       </ThirdWebProvider>
     </html>
