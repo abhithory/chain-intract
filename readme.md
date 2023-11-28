@@ -44,7 +44,6 @@ To run the project locally, follow these steps:
 
 Contributions are welcome! If you have suggestions or find bugs, please open an issue or submit a pull request.
 
+![Screenshot from 2023-11-28 03-06-00](https://github.com/abhithory/chain-intract/assets/76877003/445f8f10-89cb-4a76-8a64-84ac36dd3568)
 
-## License
 
-This project is licensed under the [MIT License](LICENSE).
